@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 	# namespace emails so that the url can be /api/v1/
 	namespace :api do
-		namespavce :v1 do
+		namespace :v1 do
   		resources :emails
   	end
   end
