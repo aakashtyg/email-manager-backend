@@ -1,6 +1,7 @@
 class SignupController < ApplicationController
 	# signup user
 	def create
+		# TODO: Add check if email already exists
 		user = User.new(user_params)
 
 		if user.save

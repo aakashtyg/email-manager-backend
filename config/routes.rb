@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   post "login", controller: :login, action: :create
   post "signup", controller: :signup, action: :create
   delete "logout", controller: :login, action: :destroy
+  get "users", controller: :users, action: :index
+
 end
