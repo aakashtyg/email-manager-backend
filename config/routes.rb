@@ -9,4 +9,9 @@ Rails.application.routes.draw do
 
   # just to check if everything is working
   root to: "home#index"
+
+  post "refresh", controller: :refresh, action: :create
+  post "login", controller: :login, action: :create
+  post "signup", controller: :signup, action: :create
+  delete "logout", controller: :login, action: :destroy
 end
