@@ -4,4 +4,5 @@ class User < ApplicationRecord
 
 	validates :name, :email, presence: true
 	has_many :emails
+	has_many :replies
 end

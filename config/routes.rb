@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-	# namespace emails so that the url can be /api/v1/
+	# namespace emails and replies so that the url can be /api/v1/
 	namespace :api do
 		namespace :v1 do
       resources :emails do
@@ -8,6 +8,7 @@ Rails.application.routes.draw do
           post 'assign_email_to_user'
         end
       end
+      resources :replies
   	end
   end
 
