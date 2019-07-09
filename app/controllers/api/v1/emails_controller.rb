@@ -51,18 +51,15 @@ module Api
 
       # assign a email to a different user
       def assign_email_to_user
-        email_id = params['email_id']
-        user_id = params['user_id']
+        email_id = params["email_id"]
+        user_id = params["user_id"]
 
         # allow only admin to change email's owner
-        if current_user.user_role == "admin"
-          if Email.exists?(email_id) && User.exists?(user_id)
+        if current_user.user_role == "admin" &&
+          Email.exists?(email_id) && User.exists?(user_id)
             @email = Email.find(email_id)
             @email.user_id = user_id
             @email.save
-          else
-            render json: { success: false }, status: :unprocessable_entity
-          end
         else
           render json: { success: false }, status: :unprocessable_entity
         end

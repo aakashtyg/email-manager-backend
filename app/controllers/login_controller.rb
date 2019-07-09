@@ -1,6 +1,7 @@
 class LoginController < ApplicationController
 	# protect only destroy method, as it will be called for logged in users only
 	before_action :authorize_access_request!, only: [:destroy]
+	rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
 	def create
 		user = User.find_by!(email: params[:email])
@@ -34,11 +35,11 @@ class LoginController < ApplicationController
 	def destroy
 		session = JWTSessions::Session.new(payload: payload)
 		session.flush_by_access_payload
-		render json: { success: 'true' }, status: :ok
+		render json: { success: true }, status: :ok
 	end
 
 	private
 		def not_found
-			render json: { error: 'Can not find email/password combination' }, status: :not_found
+			render json: { success: false, message: 'Can not find email/password combination' }, status: :not_found
 		end
 end
