@@ -2,7 +2,7 @@ module Api
   module V1
     class EmailsController < ApplicationController
       before_action :authorize_access_request!
-      # before_action :set_email, only: [:show, :update, :destroy]
+      before_action :set_email, only: [:show]
 
       # GET /api/v1/emails
       def index
@@ -17,9 +17,14 @@ module Api
       end
 
       # GET /api/v1/emails/1
-      # def show
-      #   render json: @email
-      # end
+      def show
+        # Allow users to emails assigned to them or admin can see all emails
+        if @email.user_id == current_user.id || current_user.user_role == "admin"
+          render json: @email, status: :ok
+        else
+          render json: { success: false }, status: :forbidden
+        end
+      end
 
       # POST /api/v1/emails
       def create
@@ -74,9 +79,9 @@ module Api
 
       private
         # Use callbacks to share common setup or constraints between actions.
-        # def set_email
-        #   @email = Email.find(params[:id])
-        # end
+        def set_email
+          @email = Email.find(params[:id])
+        end
 
         # Only allow a trusted parameter "white list" through.
         def email_params

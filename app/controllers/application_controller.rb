@@ -12,6 +12,6 @@ class ApplicationController < ActionController::API
 
 		# handle not authorized error for invalid tokens
 		def not_authorized
-			render json: { error: 'User not authorized' }, status: :unauthorized
+			render json: { message: 'User not authorized' }, status: :unauthorized
 		end
 end

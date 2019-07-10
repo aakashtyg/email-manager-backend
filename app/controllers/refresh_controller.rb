@@ -13,6 +13,6 @@ class RefreshController < ApplicationController
                         value: tokens[:access],
                         httponly: true,
                         secure: Rails.env.production?)
-		render json: { token: tokens[:access] }
+	render json: { token: tokens[:access] }, status: :ok
   end
 end
