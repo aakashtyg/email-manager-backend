@@ -20,7 +20,7 @@ module Api
       def show
         # Allow users to emails assigned to them or admin can see all emails
         if @email.user_id == current_user.id || current_user.user_role == "admin"
-          render json: @email, status: :ok
+          render json: { data: @email, replies: @email.replies }, status: :ok
         else
           render json: { success: false }, status: :forbidden
         end

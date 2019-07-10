@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_09_185342) do
+ActiveRecord::Schema.define(version: 2019_07_10_193637) do
 
   create_table "emails", force: :cascade do |t|
     t.string "from"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2019_07_09_185342) do
     t.integer "email_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "from_email"
     t.index ["email_id"], name: "index_replies_on_email_id"
     t.index ["user_id"], name: "index_replies_on_user_id"
   end
