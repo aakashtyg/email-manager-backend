@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def index
   	if current_user.user_role == "admin"
-	    @users = User.all
+	    @users = User.select(:id, :email, :name, :user_role).all
 
 			render json: @users
 	  else

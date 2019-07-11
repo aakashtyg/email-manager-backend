@@ -24,7 +24,10 @@ class SignupController < ApplicationController
 														value: tokens[:access],
 														httponly: true,
 														secure: Rails.env.production?)
-				render json: { token: tokens[:access] }, status: :ok
+
+				user_params = { "email" => user.email, "name" => user.name, "role" => user.user_role }
+
+				render json: { token: tokens[:access], user: user_params }, status: :ok
 			else
 				render json: { message: user.errors.full_messages.join(' ') }, status: :not_acceptable
 			end
