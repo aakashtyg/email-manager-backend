@@ -12,13 +12,13 @@ rails s
 
 ## API endpoints
 
-```POST /login ``` log user in
-```DELETE /logout``` log user out
-```POST /signup``` signup user
-```GET /users``` get all user base
-```GET /api/v1/emails``` get all emails of user
-```POST /api/v1/emails``` add emails to db
-```GET /api/v1/emails/${id}``` get a particular email based on id
-```POST /api/v1/replies``` post a reply
-```POST /api/v1/emails/${emailId}/assign_email_to_user``` assign a user to email
+```POST /login``` log user in <br />
+```DELETE /logout``` log user out <br />
+```POST /signup``` signup user <br />
+```GET /users``` get all user base <br />
+```GET /api/v1/emails``` get all emails of user <br />
+```POST /api/v1/emails``` add emails to db <br />
+```GET /api/v1/emails/${id}``` get a particular email based on id <br />
+```POST /api/v1/replies``` post a reply <br />
+```POST /api/v1/emails/${emailId}/assign_email_to_user``` assign a user to email <br />
 
