@@ -21,7 +21,7 @@ module Api
         params = reply_params
         @email = Email.find(reply_params["email_id"])
 
-        # create reply if user is admin or if the user is staff to whom the email is assigned
+        # create reply if the user is admin or if the user is staff to whom the email is assigned
         if current_user.user_role == "admin" || current_user.email == @email.user_id
           params["user_id"] = current_user.id
           params["from_email"] = current_user.email

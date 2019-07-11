@@ -24,7 +24,8 @@ class LoginController < ApplicationController
 													value: tokens[:access],
 													httponly: true,
 													secure: Rails.env.production?)
-			render json: { token: tokens[:access] }, status: :ok
+			user_params = { "email" => user.email, "name" => user.name, "role" => user.user_role }
+			render json: { token: tokens[:access], user: user_params }, status: :ok
 		else
 			# inherited from ApplicationController
 			not_authorized

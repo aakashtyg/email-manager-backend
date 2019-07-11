@@ -20,7 +20,15 @@ module Api
       def show
         # Allow users to emails assigned to them or admin can see all emails
         if @email.user_id == current_user.id || current_user.user_role == "admin"
-          render json: { data: @email, replies: @email.replies }, status: :ok
+          params = {
+            "from" => @email.from,
+            "status" => @email.status,
+            "subject" => @email.subject,
+            "to" => @email.to,
+            "id" => @email.id,
+            "assigned_to" => @email.user ? @email.user.email : nil
+          }
+          render json: { data: params, replies: @email.replies }, status: :ok
         else
           render json: { success: false }, status: :forbidden
         end
@@ -32,16 +40,16 @@ module Api
         if current_user.user_role === "admin"
           params = email_params
           params["status"] = "pending"
-          params["user_id"] = current_user.id
+          # params["user_id"] = current_user.id
           @email = Email.new(params)
+
+          if @email.save
+            render json: @email, status: :created
+          else
+            render json: @email.errors, status: :unprocessable_entity
+          end
         else
           render json: { success: false, message: 'Action not permitted' }, status: :unprocessable_entity
-        end
-
-        if @email.save
-          render json: @email, status: :created
-        else
-          render json: @email.errors, status: :unprocessable_entity
         end
       end
 
