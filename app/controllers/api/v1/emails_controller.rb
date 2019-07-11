@@ -18,7 +18,7 @@ module Api
 
       # GET /api/v1/emails/1
       def show
-        # Allow users to emails assigned to them or admin can see all emails
+        # Allow users to see emails assigned to them or admin can see all emails
         if @email.user_id == current_user.id || current_user.user_role == "admin"
           params = {
             "from" => @email.from,
