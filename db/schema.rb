@@ -12,13 +12,16 @@
 
 ActiveRecord::Schema.define(version: 2019_07_10_193637) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "emails", force: :cascade do |t|
     t.string "from"
     t.string "to"
     t.string "subject"
     t.text "text"
     t.string "status"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_emails_on_user_id"
@@ -26,8 +29,8 @@ ActiveRecord::Schema.define(version: 2019_07_10_193637) do
 
   create_table "replies", force: :cascade do |t|
     t.text "text"
-    t.integer "user_id"
-    t.integer "email_id"
+    t.bigint "user_id"
+    t.bigint "email_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "from_email"
@@ -44,4 +47,7 @@ ActiveRecord::Schema.define(version: 2019_07_10_193637) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "emails", "users"
+  add_foreign_key "replies", "emails"
+  add_foreign_key "replies", "users"
 end

@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
 	def index
-		@emails = Email.all
-		render json: @emails
+		@users = User.all
+		render json: @users
 	end
 end
