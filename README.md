@@ -1,6 +1,7 @@
 # EmailManagerBackend
 
 This a Ruby on Rails project to manage emails. API only. Its frontend can be found [here](https://github.com/aakash-cr7/email-manager-frontend).
+This project is deployed at : `https://peaceful-woodland-13815.herokuapp.com/`
 
 ## Running the app
 Make sure Postgresql is running, then run the following commands:
