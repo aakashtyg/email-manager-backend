@@ -28,6 +28,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'redis', '~> 4.1', '>= 4.1.2'
 
+gem 'mail', '~> 2.7', '>= 2.7.1'
+
 # Use ActiveModel has_secured_password
 gem 'bcrypt', '~> 3.1', '>= 3.1.13'
 
