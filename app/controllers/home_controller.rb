@@ -3,15 +3,14 @@ require 'mail'
 class HomeController < ApplicationController
 
 	def index
-		p APP_CONFIG[:gmail_password]
 		@emails = Email.all
 
 		# sign in to ther gmail mail server with credentials
 		Mail.defaults do
 		  retriever_method :pop3, :address    => "pop.gmail.com",
 		                          :port       => 995,
-		                          :user_name  => APP_CONFIG[:gmail_username],
-		                          :password   => APP_CONFIG[:gmail_password],
+		                          :user_name  => APP_CONFIG[:gmail_username] || "test83683@gmail.com",
+		                          :password   => APP_CONFIG[:gmail_password] || "",
 		                          :enable_ssl => true
 		end
 
