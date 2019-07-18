@@ -1,10 +1,14 @@
 require 'mail'
 
 class HomeController < ApplicationController
+	before_action :authorize_access_request!, only: [:update_emails_in_db]
 
 	def index
 		@emails = Email.all
+		render json: @emails, status: :ok
+	end
 
+	def update_emails_in_db
 		# sign in to ther gmail mail server with credentials
 		Mail.defaults do
 		  retriever_method :pop3, :address    => "pop.gmail.com",
@@ -32,11 +36,13 @@ class HomeController < ApplicationController
 					# create a new email and save to db
 					@email = Email.new(params)
 					@email.save()
+					render json: { success: true, status: :created } and return
 				rescue
 					render json: { success: false }, status: :not_found and return
 				end
 			end
 		end
-		render json: @emails, status: :ok
+		render json: { success: true, status: :ok }
 	end
+
 end

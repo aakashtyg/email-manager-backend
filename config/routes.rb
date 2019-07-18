@@ -20,5 +20,5 @@ Rails.application.routes.draw do
   post "signup", controller: :signup, action: :create
   delete "logout", controller: :login, action: :destroy
   get "users", controller: :users, action: :index
-
+	get "update_emails_in_db", controller: :home, action: :update_emails_in_db
 end
