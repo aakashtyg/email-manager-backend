@@ -1,5 +1,5 @@
 module Api
-  module V1    
+  module V1
     class RepliesController < ApplicationController
       before_action :authorize_access_request!
       # before_action :set_reply, only: [:show, :update, :destroy]
@@ -22,7 +22,7 @@ module Api
         @email = Email.find(reply_params["email_id"])
 
         # create reply if the user is admin or if the user is staff to whom the email is assigned
-        if current_user.user_role == "admin" || current_user.email == @email.user_id
+        if current_user.user_role == "admin" || current_user.id == @email.user_id
           params["user_id"] = current_user.id
           params["from_email"] = current_user.email
           @reply = Reply.new(params)
