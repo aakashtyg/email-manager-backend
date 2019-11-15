@@ -34,7 +34,7 @@ gem 'mail', '~> 2.7', '>= 2.7.1'
 gem 'bcrypt', '~> 3.1', '>= 3.1.13'
 
 # Middleware that will make Rack-based apps CORS compatible, making CORS AJAX possible
-gem 'rack-cors', '~> 1.0', '>= 1.0.3'
+gem 'rack-cors', '~> 1.0'
 
 # XSS/CSRF safe JWT auth designed for Single Page Apps
 gem 'jwt_sessions', '~> 2.4', '>= 2.4.1'
